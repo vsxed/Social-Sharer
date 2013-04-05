@@ -1,0 +1,161 @@
+@import "font-awesome";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+@grey: #f0f0f0;
+@shadow: rgba(0,0,0,0.165);
+@highlight: #55beeb;
+@bg-col: #333;
+
+@icons: 6;
+@container-width: 40px * @icons + 10px;
+
+.transition (@trans-time, @trans-grad:ease-in-out) {
+  // -webkit-transform: translate3d(0,0,0);
+  //         transform: translate3d(0,0,0);
+  -webkit-transition: all @trans-time @trans-grad;  
+     -moz-transition: all @trans-time @trans-grad;
+      -ms-transition: all @trans-time @trans-grad;
+       -o-transition: all @trans-time @trans-grad;
+          transition: all @trans-time @trans-grad;
+}
+.webfont (@fontname) {
+  font-family: '@{fontname}';
+  src:url('font/@{fontname}');
+  src:url('font/@{fontname}.eot?#iefix') format('embedded-opentype'),
+      url('font/@{fontname}.woff') format('woff'),
+      url('font/@{fontname}.ttf') format('truetype');
+  font-weight: normal;
+  font-style:  normal;
+}
+@font-face{
+	.webfont(more);
+}
+
+// -- Codepen related --
+body {
+  padding: 3em 2em;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  background: @bg-col;
+}
+
+.pen {
+	max-width: 290px;
+	margin: 0 auto;
+
+	img {
+		margin-left: 15px;
+	}
+}
+
+.credit {
+	display: block;
+	max-width: 400px;
+	text-align: center;
+	margin: 75px auto 0;
+	padding: 0;
+	font-size: 0.8em;
+	color: @grey;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.9);
+
+	p a,
+	a {
+		color: white;
+		text-decoration: none;
+		font-weight: 700;
+
+		&:hover,
+		&:active {
+			text-shadow: 0 0 5px rgba(255,255,255,0.4);
+			color: white;
+		}
+
+		&.button {
+			padding: 6px 12px;
+			margin-top: 10px;
+			background: darken(@bg-col, 10%);
+			border-radius: 3px;
+
+			&:hover {
+				background: lighten(@bg-col, 10%);
+			}
+		}
+	}
+
+	p:last-of-type {
+		margin-bottom: 30px;
+	}
+}
+
+// -- Pen related --
+.more-button {
+	display:inline-block;
+	padding:5px 15px 5px 0;
+	margin-left: 15px;
+	overflow:hidden;
+	top: 5px;
+	width: 20px;
+	.transition(0.3s);
+	position: relative;
+
+	&:before {
+		content:'\e0f2';
+		font-family: "more";
+		-webkit-transform: rotate(90deg);
+		   -moz-transform: rotate(90deg);
+		     -o-transform: rotate(90deg);
+		        transform: rotate(90deg);
+		display:inline-block;
+		width: 20px;
+		background: @bg-col;
+		cursor: pointer;
+		color: lighten(@bg-col,60%);
+		.transition(0.3s);
+	}
+
+	&:hover:before,
+	&:active:before{
+		color: lighten(@bg-col, 15%);
+		.transition(0.3s);
+	}
+
+	&:hover,
+	&:active{
+		width: @container-width;
+	}
+}
+.container{
+	display: inline-block;
+	opacity: 0;
+	overflow:hidden;
+	top: 0;
+
+	left: 0;
+	width: @container-width;
+	position:absolute;
+	.transition(0.4s);
+
+	.share-btn {
+		font-size: 1.2em;
+		padding: 10px;
+		color: darken(@grey, 25%);
+
+		&:hover,
+		&:active{
+			text-shadow: 0 0 5px fade(@highlight, 45%);
+			color: @highlight;
+		}
+	}
+}
+
+.more-button:hover>.container,
+.more-button:active>.container{
+	display:inline-block;
+	left: 35px;
+	position:absolute;
+	opacity: 1;
+	width: @container-width;
+	top: 0;
+	.transition(0.4s);
+}
